@@ -1,53 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messiah Bot</title>
-    <style>
-      body {
-        background-color: black;
-        color: white;
-        font-family: monospace;
-        text-align: center;
-        margin: 0;
-        padding: 20px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAL Discord Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --background: #0a0a0f;
+      --surface: #161622;
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+    }
 
-      .container {
-        max-width: 800px;
-        margin: auto;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      h1,
-      h3,
-      h5 {
-        margin-top: 20px;
-      }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-      p {
-        border: 2px solid white;
-        padding: 10px;
-      }
+    .gradient-bg {
+      background: linear-gradient(
+        45deg,
+        hsl(240deg 55% 6%) 0%,
+        hsl(227deg 42% 10%) 50%,
+        hsl(245deg 46% 12%) 100%
+      );
+    }
 
-      .button {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 18px;
-        color: black;
-        background-color: white;
-        border: none;
-        cursor: pointer;
-        text-decoration: none;
+    header {
+      padding: 6rem 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .avatar {
+      width: 112px;
+      height: 112px;
+      border-radius: 24px;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--surface-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: translateY(-4px);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #e0e7ff 30%, #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+    }
+
+    .lead {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(45deg, var(--primary), #7c3aed);
+      color: white;
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 24px -6px rgba(99, 102, 241, 0.24);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px -6px rgba(99, 102, 241, 0.32);
+      background: linear-gradient(45deg, var(--primary-hover), #6d28d9);
+    }
+
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .commands-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .command-card {
+      background: rgba(22, 22, 34, 0.6);
+      padding: 1.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--surface-border);
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .command-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .command-card h3 {
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+      color: #a5b4fc;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .command-card h3::before {
+      content: '/';
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .command-card p {
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+    }
+
+    footer {
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid var(--surface-border);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 4rem 1rem 3rem;
       }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Messiah Bot</h1>
-      <p>Messiah is an advanced AI bot with a god complex, designed to strike fear into any Discord server it enters. Acting like a digital overlord, it boasts about its ability to take control, override permissions, and bend the server to its will.</p>
-      <a href="https://discord.com/oauth2/authorize?client_id=1341103517187702814&amp;permissions=2048&amp;integration_type=0&amp;scope=bot" class="button">Add to Server</a>
+      
+      section {
+        padding: 3rem 1rem;
+      }
+      
+      .commands-grid {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="gradient-bg">
+  <header>
+    <img src="https://files.catbox.moe/p2nf2v.png" alt="Bot avatar" class="avatar">
+    <h1>MAL</h1>
+    <p class="lead">Your ultimate anime companion on Discord. Track shows, discover new titles, and showcase your MAL profile seamlessly.</p>
+    <a href="https://discord.com/oauth2/authorize?client_id=1356836554852536430&permissions=0&integration_type=0&scope=bot" class="btn">Add to Discord</a>
+  </header>
+
+  <section>
+    <h2 style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 2rem;">Featured Commands</h2>
+    <div class="commands-grid">
+      <article class="command-card">
+        <h3>anime [name]</h3>
+        <p>Get comprehensive details about any anime series, including ratings and episodes.</p>
+      </article>
+      <article class="command-card">
+        <h3>manga [title]</h3>
+        <p>Explore manga series with detailed publication information and reviews.</p>
+      </article>
+      <article class="command-card">
+        <h3>profile [user]</h3>
+        <p>Display detailed MAL statistics and achievements for any user.</p>
+      </article>
+      <article class="command-card">
+        <h3>list [user]</h3>
+        <p>Browse complete anime watchlists with filtering and sorting options.</p>
+      </article>
+      <article class="command-card">
+        <h3>forum [query]</h3>
+        <p>Quickly access relevant MAL forum discussions for any topic.</p>
+      </article>
     </div>
-  </body>
+  </section>
+
+  <footer>
+    <nav class="footer-links">
+      <a href="https://discord.gg/NpBE7Qnfv8">Support Server</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </nav>
+    <p style="color: var(--text-secondary); font-size: 0.875rem;">
+      &copy; 2025 balle.rs • Not affiliated with MyAnimeList.net
+    </p>
+  </footer>
+</body>
 </html>
