@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal - MAL Discord Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --background: #0a0a0f;
+      --surface: #161622;
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .legal-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .legal-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .last-updated {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .legal-content {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid var(--surface-border);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      color: var(--primary);
+    }
+
+    h3 {
+      font-size: 1.125rem;
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    li {
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight {
+      background: rgba(99, 102, 241, 0.1);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--primary);
+      margin: 1.5rem 0;
+    }
+
+    .footer {
+      margin-top: 4rem;
+      text-align: center;
+      border-top: 1px solid var(--surface-border);
+      padding-top: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .legal-container {
+        padding: 2rem 1rem;
+      }
+      
+      .legal-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Terms of Service Page -->
+  <div class="legal-container">
+    <div class="legal-header">
+      <h1>Terms of Service</h1>
+      <p class="last-updated">Last Updated: July 2024</p>
+    </div>
+
+    <div class="legal-content">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By using the MAL Discord Bot ("the Bot"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not use the Bot.</p>
+
+      <h2>2. Service Description</h2>
+      <p>The Bot provides MyAnimeList integration within Discord, offering features including but not limited to:</p>
+      <ul>
+        <li>Anime/manga information lookup</li>
+        <li>MAL profile statistics</li>
+        <li>Forum post searching</li>
+        <li>List management features</li>
+      </ul>
+
+      <h2>3. User Responsibilities</h2>
+      <p>You agree to:</p>
+      <ul>
+        <li>Use the Bot in compliance with Discord's Terms of Service</li>
+        <li>Not attempt to disrupt or overload the Bot's services</li>
+        <li>Not use the Bot for any illegal activities</li>
+      </ul>
+
+      <div class="highlight">
+        <h3>No Data Storage</h3>
+        <p>The Bot does not store any user data, including but not limited to:</p>
+        <ul>
+          <li>Discord user information</li>
+          <li>MAL account credentials</li>
+          <li>Server-specific data</li>
+        </ul>
+      </div>
+
+      <h2>4. Modifications</h2>
+      <p>We reserve the right to modify these terms at any time. Continued use of the Bot constitutes acceptance of revised terms.</p>
+    </div>
+
+    <!-- Privacy Policy Page -->
+    <div class="legal-container" style="margin-top: 4rem;">
+      <div class="legal-header">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last Updated: July 2024</p>
+      </div>
+
+      <div class="legal-content">
+        <h2>1. Data Collection</h2>
+        <div class="highlight">
+          <h3>Zero Data Storage Policy</h3>
+          <p>The MAL Discord Bot does <strong>not</strong> collect, store, or retain any personal information. All data processing occurs in real-time and is not persisted.</p>
+        </div>
+
+        <h2>2. Information Handling</h2>
+        <p>When you use the Bot:</p>
+        <ul>
+          <li>Queries to MyAnimeList are processed in real-time</li>
+          <li>No logs of commands or interactions are kept</li>
+          <li>No cookies or tracking technologies are used</li>
+        </ul>
+
+        <h2>3. Third-Party Services</h2>
+        <p>The Bot interacts with:</p>
+        <ul>
+          <li>MyAnimeList API - for anime/manga data</li>
+          <li>Discord API - for bot functionality</li>
+        </ul>
+        <p>We do not control these third-party services and recommend reviewing their privacy policies.</p>
+
+        <h2>4. Changes to Policy</h2>
+        <p>Significant changes to this policy will be announced through our official Discord server.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <nav class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://discord.gg/NpBE7Qnfv8">Support Server</a>
+      </nav>
+      <p style="color: var(--text-secondary); font-size: 0.875rem;">
+        &copy; 2025 balle.rs • All rights reserved
+      </p>
+    </div>
+  </div>
+</body>
+</html>
